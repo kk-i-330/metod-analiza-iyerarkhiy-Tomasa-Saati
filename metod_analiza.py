@@ -22,11 +22,25 @@ def filling(x, y): ##заполняем матрицу значениями
 
 def choising(): ## реализовываем возможность прекратить работу программы
     global check
-    choise = int(input('Чтобы выполнить заново введите 1, для прекращения работы - любой другой символ: '))
+    choise = input('Чтобы выполнить заново введите 1, для прекращения работы - любой другой символ: ')
     if choise == '1':
         check = True
     else:
         check = False
+        
+def calculating(): ##расчитываем весовые коэффиценты
+     global array
+     sum_all = float()
+     for i in range(len(array)):
+         for j in range(len(array[i])):
+             sum_all += array[i][j]           
+     print('Весовые коэффициенты: ')
+     for i in range(len(array)): #Перебор всех строк матрицы
+         sum_line = sum(array[i]) #Суммирование элементов по строкам
+         w = 'w'+ str(i+1) + ' = '
+         print(w, round(sum_line/sum_all,2)) 
+         
+  
 
 if __name__ == '__main__': ## выполнение функций
     while check:
@@ -46,7 +60,6 @@ if __name__ == '__main__': ## выполнение функций
                         continue
                     a = False
         outputting()
+        calculating()
         choising()
-        
-        
         
